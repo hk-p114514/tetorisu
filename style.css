@@ -1,0 +1,9 @@
+body {
+    background-color: rgb(252, 225, 225);
+}
+
+.sample {
+    background-color: rgb(206, 230, 163);
+    height: 100px;
+    width: 100px;
+}
