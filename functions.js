@@ -17,18 +17,23 @@ const getRandomNum = (min,max)=> {
 
 
  // ブロック一つを描画する
-    const drawBlock = (x, y, c) => {
+    const drawBlock = (x, y, c, where) => {
         let px = x * blockSize;
         let py = y * blockSize;
-        ctx.fillStyle = tetroColors[c];
-        ctx.fillRect(px, py, blockSize, blockSize);
-        ctx.strokeStyle = 'black';
+
+        where.fillStyle = tetroColors[c];
+        where.fillRect(px, py, blockSize, blockSize);
+        where.strokeStyle = 'black';
+
         if(c == 0) {
+            // 着地点
             ctx.setLineDash([2, 2]);
         } else {
-            ctx.setLineDash([0, 0]);
+            // 本体
+            where.setLineDash([0, 0]);
         } 
-        ctx.strokeRect(px, py, blockSize, blockSize);
+
+        where.strokeRect(px, py, blockSize, blockSize);
     }   
 
      //ブロックの当たり判定
@@ -55,29 +60,37 @@ const getRandomNum = (min,max)=> {
     }   
 
     const drawAll = () => {
+
+        // フィールドのクリア　ー＞　現在の描画を一旦消す
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
         // フィールドの描画
         for(let y = 0; y < fieldRow; y++) {
             for(let x = 0; x < fieldCol; x++) {
                 if(field[y][x]) {
-                    drawBlock(x, y, field[y][x]);
+                    drawBlock(x, y, field[y][x], ctx);
                 }
             }
         }
 
-        // テトロミノの描画
+        // テトロミノの描画 ----------------------------------------------------------------
 
         //  下にいくつ行けるかを調べる
         let under = 0;
         while(checkMove(0, under + 1)) under++;
 
         for(let y = 0; y < tetroSize; y++) {
+
             for(let x = 0; x < tetroSize; x++) {
+
                 if(tetro[y][x]) {
+
                     // 着地点
-                    drawBlock(tetroX + x, tetroY + y + under, 0);
+                    drawBlock(tetroX + x, tetroY + y + under, 0, ctx/* 0を指定すればテトロミノの0番目の空白のミノを指定できる */);
+
                     // テトロミノ本体
-                    drawBlock(tetroX + x, tetroY + y, Ttype);
+                    drawBlock(tetroX + x, tetroY + y, Ttype, ctx);
+                    
                 }
             }
         }
@@ -95,10 +108,12 @@ const getRandomNum = (min,max)=> {
         }
    }   
 
+
     const fixTetro = () => {
        for(let y = 0; y < tetroSize; y++) {
            for(let x = 0; x < tetroSize; x++) {
                if(tetro[y][x]) {
+                //   フィールドに現在のタイプ（Ttype）のミノを固定する 
                    field[tetroY + y][tetroX + x] = Ttype;
                }
            }
@@ -127,25 +142,53 @@ const getRandomNum = (min,max)=> {
        }
    }
 
+   const drawNext = () => {
+       for(let y = 0; y < tetroSize; y++) {
+           for(let x = 0; x < tetroSize; x++) {
+               if(newTetro[y][x]) {
+                   drawBlock(x, y, newTtype, ntx);
+               }
+           }
+       }
+   }
+
 //    テトロミノが落ちる処理
    const dropBlock = () => {
+    //    ゲームオーバーだったら、その時点で処理をしない
        if(gameOver) return;
-       if(checkMove(0, 1)) {
-            tetroY++;
-       } else {
-           fixTetro();
-           checkLine();
 
-           Ttype = getRandomNum(1, tetroTypes.length - 1);
+       if(checkMove(0, 1)/* 現在地の一つ下に行けるか（落ちれるか）を調べる */) {
+            tetroY++; // 一つ下にミノを落とす
+       } else {
+        //もう下に行けない　ー＞　一番下もしくはミノの上
+
+           fixTetro(); //フィールドに現在のミノを同化させる
+           checkLine();//一行消せるかどうかを確認する
+
+
+        //    新しいミノを作る　********************************
+
+           Ttype = newTtype;
+           newTtype = getRandomNum(1, tetroTypes.length - 1);
+
            tetro = tetroTypes[Ttype];
+           ntx.clearRect(0, 0, next.width, next.height);
+           newTetro = tetroTypes[newTtype];
+
            tetroX = startX;
            tetroY = startY;
 
+           score.innerText = `${newTtype} : ${tetroTypesObject[newTtype]}`;
+
+           console.log("now : " + Ttype + " new : " + newTtype);
+        //    新しいミノが現在地で動けるかどうか　ー＞　動けない　＝　ミノまたは壁に接触している　＝　ゲームオーバー
            if(! checkMove(0, 0)) {
                gameOver = true;
            }
        }
+       //また描画リセット＆着地点等の処理を呼ぶ
        drawAll();
+       drawNext();
    }  
 
        // テトロミノの回転
