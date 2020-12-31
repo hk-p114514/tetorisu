@@ -9,11 +9,19 @@
 <body>
     <div class="container">
         <canvas id="canvas"></canvas>
-        <canvas id="next"></canvas>
+        <aside class="info">
+            <section class="next">
+                <p>NEXT</p>
+                <canvas id="next"></canvas>
+            </section>
+        </aside>
     </div>
-    <p id="score"></p>
-    <!-- <div class="sample"></div> -->
-
+    <section id="control">
+        <div id="left">←</div>
+        <div id="rotate-left">↺</div>
+        <div id="rotate-right">↻</div>
+        <div id="right">→</div>
+    </section>
     <script type="text/javascript" src="functions.js"></script>
     <script type="text/javascript" src="index.js"></script>
 </body>

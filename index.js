@@ -16,6 +16,10 @@
     canvas.width = blockSize * fieldCol;
     canvas.height = blockSize * fieldRow;
 
+    const control = document.getElementById('control');
+    control.style.width = canvas.width + 'px';
+    control.style.margin = '5% auto';
+
     const body = document.querySelector('body');
     canvas.style.marginLeft = (body.clientWidth / 2) - (canvas.width / 2) + 'px';
 
@@ -161,7 +165,7 @@
     let Ttype = getRandomNum(1, tetroTypes.length - 1);
     let newTtype = getRandomNum(1, tetroTypes.length - 1);
 
-    console.log("now : " + Ttype + " new : " + newTtype);
+    // console.log("now : " + Ttype + " new : " + newTtype);
 
     let newTetro = tetroTypes[newTtype];
     let tetro = tetroTypes[Ttype];

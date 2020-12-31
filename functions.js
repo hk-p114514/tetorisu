@@ -178,9 +178,7 @@ const getRandomNum = (min,max)=> {
            tetroX = startX;
            tetroY = startY;
 
-           score.innerText = `${newTtype} : ${tetroTypesObject[newTtype]}`;
-
-           console.log("now : " + Ttype + " new : " + newTtype);
+        //    console.log("now : " + Ttype + " new : " + newTtype);
         //    新しいミノが現在地で動けるかどうか　ー＞　動けない　＝　ミノまたは壁に接触している　＝　ゲームオーバー
            if(! checkMove(0, 0)) {
                gameOver = true;

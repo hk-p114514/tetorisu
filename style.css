@@ -7,11 +7,27 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 
-#next {
-    background-color: rgb(255, 255, 255);
+.next {
     margin: 2em 0 0 2em;
     padding: 5px;
+}
+
+.next p {
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+#next {
+    background-color: rgb(255, 255, 255);
     border: 3px solid rgba(103, 31, 117, 0.473);
+    padding: 5px;
+}
+
+#control {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .sample {
