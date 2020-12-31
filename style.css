@@ -2,6 +2,18 @@ body {
     background-color: rgb(252, 225, 225);
 }
 
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#next {
+    background-color: rgb(255, 255, 255);
+    margin: 2em 0 0 2em;
+    padding: 5px;
+    border: 3px solid rgba(103, 31, 117, 0.473);
+}
+
 .sample {
     background-color: rgb(206, 230, 163);
     height: 100px;
