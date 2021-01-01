@@ -25,6 +25,7 @@
     const right = document.getElementById('right');
     const rotateLeft = document.getElementById('rotate-left');
     const rotateRight = document.getElementById('rotate-right');
+    const drop = document.getElementById('drop');
 
     const body = document.querySelector('body');
     canvas.style.marginLeft = (body.clientWidth / 2) - (canvas.width / 2) + 'px';
@@ -171,7 +172,17 @@
         gameController(68);
     };
 
+    drop.onclick = () => {
+        gameController(40);
+    }
 
+    drop.ondblclick = () => {
+        gameController(38);
+    }
+
+    document.onkeydown = (e) => {
+        gameController(e.keyCode);
+    }
     const gameController = (e) => {
         if(gameOver) return ;
         let nteto;
