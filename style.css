@@ -1,5 +1,6 @@
 body {
     background-color: rgb(252, 225, 225);
+    width: auto;
 }
 
 .container {
@@ -21,13 +22,51 @@ body {
 #next {
     background-color: rgb(255, 255, 255);
     border: 3px solid rgba(103, 31, 117, 0.473);
-    padding: 5px;
+    padding: 0 5px;
+}
+
+.button {
+    margin: 0 3px;
+    padding: 1.5em 0;
+    border-radius: 100%;
+    font-size: 1.5em;
+    font-weight: bold;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+    transition: 0.3s;
+    user-select: none;
+    margin: 0 5px;
+}
+
+.button:active {
+    box-shadow: none;
+    position: relative;
+    top: 3px;
+    right: 3px;
 }
 
 #control {
     text-align: center;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    height: 0px;
+}
+
+#left {
+    background-color: yellow;
+}
+
+#right {
+    background-color: blue;
+    color: white;
+}
+
+#rotate-left {
+    background-color: white;
+}
+
+#rotate-right {
+    background-color: black;
+    color: white;
 }
 
 .sample {

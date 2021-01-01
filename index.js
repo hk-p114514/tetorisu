@@ -17,8 +17,14 @@
     canvas.height = blockSize * fieldRow;
 
     const control = document.getElementById('control');
-    control.style.width = canvas.width + 'px';
+
+    const controllerWidth = canvas.width + (canvas.width / 2);
+    control.style.width = controllerWidth + 'px';
     control.style.margin = '5% auto';
+    const left = document.getElementById('left');
+    const right = document.getElementById('right');
+    const rotateLeft = document.getElementById('rotate-left');
+    const rotateRight = document.getElementById('rotate-right');
 
     const body = document.querySelector('body');
     canvas.style.marginLeft = (body.clientWidth / 2) - (canvas.width / 2) + 'px';
@@ -124,9 +130,52 @@
 
     // キーボード操作
     document.onkeydown = (e) => {
+        gameController(e);
+    }
+
+    // ボタン操作
+    // right.addEventListener('onclick', () => {
+    //     gameController(39);
+    //     console.log('button pushed');
+    // });
+
+    // left.addEventListener('onclick', () => {
+    //     gameController(37);
+    //     console.log('button pushed');
+    // });
+
+    // rotateRight.addEventListener('onclick', () => {
+    //     rotate(1);
+    //     console.log('button pushed');
+    // });
+
+    // rotateLeft.addEventListener('onclick', () => {
+    //     rotate(0);
+    //     console.log('button pushed');
+    // });
+
+    right.onclick = () => {
+        console.log('button pushed');
+        gameController(39);
+    };
+
+    left.onclick = () => {
+        gameController(37);
+    };
+
+    rotateRight.onclick = () => {
+        gameController(70);
+    };
+
+    rotateLeft.onclick = () => {
+        gameController(68);
+    };
+
+
+    const gameController = (e) => {
         if(gameOver) return ;
         let nteto;
-        switch(e.keyCode) {
+        switch(e) {
             case 37:
                 // 左
                if(checkMove(-1, 0)) tetroX--;
@@ -159,6 +208,8 @@
         }
         drawAll();
     }
+
+    
 
     // ntx.fillRect(0, 0, blockSize, blockSize);
     // ゲームの実行処理 
