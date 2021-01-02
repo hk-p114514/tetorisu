@@ -1,6 +1,11 @@
+html {
+  touch-action: manipulation;
+}
+
 body {
     background-color: rgb(252, 225, 225);
-    width: auto;
+    width: 100vw;
+    height: 100vh;
 }
 
 .container {
