@@ -114,4 +114,7 @@ th {
     table {
         display: none;
     }
+    body {
+        user-scalable: none;
+    }
 }
