@@ -8,6 +8,13 @@ body {
     grid-template-columns: 1fr 1fr;
 }
 
+.info {
+    user-select: none;
+}
+.layout-flex {
+    display: flex;
+}
+
 .next {
     margin: 2em 0 0 2em;
     padding: 5px;
@@ -23,6 +30,31 @@ body {
     background-color: rgb(255, 255, 255);
     border: 3px solid rgba(103, 31, 117, 0.473);
     padding: 0 5px;
+}
+
+.score-field {
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: Verdana;
+    margin-left: 1.3em;
+}
+
+table {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-left: 1.3em;
+}
+
+th {
+    border-bottom: 1px solid blueviolet;
+    padding: 0 3px;
+}
+
+.control-key {
+    border-bottom: 1px solid rgba(97, 92, 92, 0.527);
+    font-family: "Helvetica Neue",Arial,"Hiragino Kaku Gothic ProN","Hiragino Sans",Meiryo,sans-serif;
+    text-align: center;
 }
 
 .button {

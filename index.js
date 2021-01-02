@@ -37,7 +37,9 @@
     next.width = blockSize * 4;
     next.height = blockSize * 4;
 
-    const score = document.getElementById('score');
+    let score = 0;
+    const scoreView = document.getElementById('score');
+    scoreView.innerText = `SCORE : ${score} P`;
 
     // フィールドの色関連
     const fieldColor = 'rgb(206, 230, 163)';
@@ -62,7 +64,7 @@
     // ゲームオーバーフラグ
     let gameOver = false;
 
-    
+
     // テトロミノの宣言
     const tetroTypes = [
         [], //0, 空っぽ -> 着地点用
@@ -134,27 +136,6 @@
         gameController(e);
     }
 
-    // ボタン操作
-    // right.addEventListener('onclick', () => {
-    //     gameController(39);
-    //     console.log('button pushed');
-    // });
-
-    // left.addEventListener('onclick', () => {
-    //     gameController(37);
-    //     console.log('button pushed');
-    // });
-
-    // rotateRight.addEventListener('onclick', () => {
-    //     rotate(1);
-    //     console.log('button pushed');
-    // });
-
-    // rotateLeft.addEventListener('onclick', () => {
-    //     rotate(0);
-    //     console.log('button pushed');
-    // });
-
     right.onclick = () => {
         console.log('button pushed');
         gameController(39);
@@ -174,10 +155,6 @@
 
     drop.onclick = () => {
         gameController(40);
-    }
-
-    drop.ondblclick = () => {
-        gameController(38);
     }
 
     document.onkeydown = (e) => {

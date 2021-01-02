@@ -15,6 +15,13 @@ const getRandomNum = (min,max)=> {
         }
     }
 
+    const addScore = (lineCount) => {
+        console.log(`lineCount is ${lineCount}`);
+        let add = (lineCount + Math.floor(lineCount / 2)) * 100;
+        console.log(add);
+        score += add;
+        scoreView.innerText = `SCORE : ${score} P`;
+    }
 
  // ブロック一つを描画する
     const drawBlock = (x, y, c, where) => {
@@ -130,14 +137,15 @@ const getRandomNum = (min,max)=> {
                    break;
                }
            }
+
            if(flag) {
                lineCount++;
-
                for(let ny = y; ny > 0; ny--) {
                    for(let nx = 0; nx < fieldCol; nx++) {
                        field[ny][nx] = field[ny - 1][nx];
                    }
                }
+                addScore(lineCount);
            }
        }
    }
