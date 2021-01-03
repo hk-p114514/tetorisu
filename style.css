@@ -8,6 +8,10 @@ body {
     height: auto;
 }
 
+#canvas {
+    margin-top: 2em;
+}
+
 .container {
     display: grid;
     grid-template-columns: 1fr 1fr;
