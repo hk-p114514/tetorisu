@@ -1,1 +1,1 @@
-this is tetris
+this is a game likes tetris
