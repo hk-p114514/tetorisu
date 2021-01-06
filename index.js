@@ -28,7 +28,7 @@
     const drop = document.getElementById('drop');
 
     const body = document.querySelector('body');
-    canvas.style.marginLeft = (body.clientWidth / 2) - (canvas.width / 2) + 'px';
+    // canvas.style.marginLeft = (body.clientWidth / 2) - (canvas.width / 2) + 'px';
 
     // 次のミノの表示画面
     const next = document.getElementById('next');
@@ -40,6 +40,13 @@
     let score = 0;
     const scoreView = document.getElementById('score');
     scoreView.innerText = `SCORE : ${score} P`;
+
+    // ホールド画面の表示
+    const holdView = document.getElementById('hold');
+    const htx = holdView.getContext('2d');
+
+    holdView.width = blockSize * 4;
+    holdView.height = blockSize * 4;
 
     // フィールドの色関連
     const fieldColor = 'rgb(206, 230, 163)';
@@ -64,6 +71,11 @@
     // ゲームオーバーフラグ
     let gameOver = false;
 
+    // 現在ホールドしているかどうか
+    let hold = false;
+
+    // ホールドしているテトリミノのタイプ
+    let holdType;
 
     // テトロミノの宣言
     const tetroTypes = [
@@ -191,6 +203,7 @@
                 break;
             case 32:
                 // スペース
+                tetroHold();
                 break;
             
         }

@@ -172,19 +172,8 @@ const getRandomNum = (min,max)=> {
 
            fixTetro(); //フィールドに現在のミノを同化させる
            checkLine();//一行消せるかどうかを確認する
-
-
         //    新しいミノを作る　********************************
-
-           Ttype = newTtype;
-           newTtype = getRandomNum(1, tetroTypes.length - 1);
-
-           tetro = tetroTypes[Ttype];
-           ntx.clearRect(0, 0, next.width, next.height);
-           newTetro = tetroTypes[newTtype];
-
-           tetroX = startX;
-           tetroY = startY;
+        createTetro();
 
         //    console.log("now : " + Ttype + " new : " + newTtype);
         //    新しいミノが現在地で動けるかどうか　ー＞　動けない　＝　ミノまたは壁に接触している　＝　ゲームオーバー
@@ -196,6 +185,18 @@ const getRandomNum = (min,max)=> {
        drawAll();
        drawNext();
    }  
+
+        const createTetro = () => {
+                Ttype = newTtype;
+                newTtype = getRandomNum(1, tetroTypes.length - 1);
+
+                tetro = tetroTypes[Ttype];
+                ntx.clearRect(0, 0, next.width, next.height);
+                newTetro = tetroTypes[newTtype];
+
+                tetroX = startX;
+                tetroY = startY;
+        }
 
        // テトロミノの回転
     const rotate = (rotateType) => {
@@ -218,4 +219,18 @@ const getRandomNum = (min,max)=> {
             }
         }
         return newTet;
+    }
+
+    const tetroHold = () => {
+        if(!hold) {
+            hold = true;
+            holdType = Ttype;
+            createTetro();
+        } else {
+            let hoge = Ttype;
+            Ttype = holdType;
+            holdType = hoge;
+            tetro = tetroTypes[Ttype];
+        }
+
     }
