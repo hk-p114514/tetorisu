@@ -239,7 +239,7 @@ const getRandomNum = (min,max)=> {
         htx.clearRect(0, 0,holdView.width, holdView.height);
         for(let x = 0; x < tetroSize; x++) {
             for(let y = 0; y < tetroSize; y++) {
-                if(tetroTypes[holdType][x][y])drawBlock(x, y, holdType, htx);
+                if(tetroTypes[holdType][y][x])drawBlock(x, y, holdType, htx);
             }
         }
       }
