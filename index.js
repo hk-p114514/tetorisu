@@ -74,6 +74,9 @@
     // 現在ホールドしているかどうか
     let hold = false;
 
+    // ホールドしているテトリミノ
+    let holdTetro;
+
     // ホールドしているテトリミノのタイプ
     let holdType;
 

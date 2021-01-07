@@ -227,19 +227,21 @@ const getRandomNum = (min,max)=> {
        if(!hold) {
             hold = true;
             holdType = Ttype;
+            holdTetro = tetroTypes[holdType];
             createTetro();
         } else {
-            let hoge = Ttype;
+            let beforeHold = Ttype;
             Ttype = holdType;
-            holdType = hoge;
+            holdType = beforeHold;
             tetro = tetroTypes[Ttype];
+            holdTetro = tetroTypes[holdType];
             tetroX = startX;
             tetroY = startY;
         }
         htx.clearRect(0, 0,holdView.width, holdView.height);
         for(let x = 0; x < tetroSize; x++) {
             for(let y = 0; y < tetroSize; y++) {
-                if(tetroTypes[holdType][x][y])drawBlock(x, y, holdType, htx);
+                if(holdTetro[y][x])drawBlock(x, y, holdType, htx);
             }
         }
       }
