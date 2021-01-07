@@ -67,6 +67,8 @@ const getRandomNum = (min,max)=> {
     }   
 
     const drawAll = () => {
+        // 時間計測スタート
+        startTime = Date.now();
 
         // フィールドのクリア　ー＞　現在の描画を一旦消す
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -164,6 +166,18 @@ const getRandomNum = (min,max)=> {
    const dropBlock = () => {
     //    ゲームオーバーだったら、その時点で処理をしない
        if(gameOver) return;
+       
+    //    テトリミノの落下スピ−どの変化判定
+    let now = Date.now();
+    let passed = startTime.getTime - now.getTime;
+    if(passed > 60000) {
+        startTime = now;
+        dropSpeed --;
+        minute++;
+        if(minute > 10)dropSpeed --;
+        if(minute > 15)dropSpeed --;
+        if(minute > 20)dropSpeed -= 2;
+    }
 
        if(checkMove(0, 1)/* 現在地の一つ下に行けるか（落ちれるか）を調べる */) {
             tetroY++; // 一つ下にミノを落とす

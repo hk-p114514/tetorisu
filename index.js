@@ -149,6 +149,8 @@
     // テトロミノの落ちるスピード -> dropSpeed (ミリ秒)に１ブロック分落ちる (1000ミリ秒で1秒)
     const dropSpeed = 800;
 
+    // 計測の開始時点
+    let startTime = null;
     // キーボード操作
     document.onkeydown = (e) => {
         gameController(e);
