@@ -13,8 +13,14 @@ body {
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    justify-content: space-around;
+}
+
+#hold {
+    background-color: #fff;
+    border: 3px solid rgba(103, 31, 117, 0.473);
+    padding: 0 5px;
 }
 
 .info {
@@ -24,12 +30,12 @@ body {
     display: flex;
 }
 
-.next {
+.view_side_canvas {
     margin: 2em 0 0 2em;
     padding: 5px;
 }
 
-.next p {
+.view_logo {
     font-family: Verdana;
     font-weight: bold;
     font-size: 1.5em;
@@ -89,6 +95,7 @@ th {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     height: 0px;
+    display: none;
 }
 
 #left {
@@ -122,5 +129,9 @@ th {
 @media (max-width: 800px) {
     table {
         display: none;
+    }
+
+    #container {
+        display: block;
     }
 }
