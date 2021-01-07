@@ -169,7 +169,7 @@ const getRandomNum = (min,max)=> {
             tetroY++; // 一つ下にミノを落とす
        } else {
         //もう下に行けない　ー＞　一番下もしくはミノの上
-
+        toggleHold = true;
            fixTetro(); //フィールドに現在のミノを同化させる
            checkLine();//一行消せるかどうかを確認する
         //    新しいミノを作る　********************************
@@ -222,7 +222,9 @@ const getRandomNum = (min,max)=> {
     }
 
     const tetroHold = () => {
-        if(!hold) {
+      if(toggleHold){
+        toggleHold = false;
+       if(!hold) {
             hold = true;
             holdType = Ttype;
             createTetro();
@@ -232,5 +234,5 @@ const getRandomNum = (min,max)=> {
             holdType = hoge;
             tetro = tetroTypes[Ttype];
         }
-
+      }
     }

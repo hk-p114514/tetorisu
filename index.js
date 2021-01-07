@@ -77,6 +77,9 @@
     // ホールドしているテトリミノのタイプ
     let holdType;
 
+    //ホールドして良いかどうか
+    let toggleHold = true;
+
     // テトロミノの宣言
     const tetroTypes = [
         [], //0, 空っぽ -> 着地点用
