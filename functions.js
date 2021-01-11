@@ -189,9 +189,9 @@ const getRandomNum = (min,max)=> {
            }
 
 
-        if (turn > 60) {
+        if (40 < turn) {
             turn = 0;
-            dropSpeed -= 5;
+            dropSpeed -= 10;
         }
         changeSpeed(dropSpeed);
        }
