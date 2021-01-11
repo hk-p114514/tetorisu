@@ -7,6 +7,7 @@ const getRandomNum = (min,max)=> {
 
 // 初期化の関数
     const init = () => {
+
         for(let y = 0; y < fieldRow; y++) {
             field[y] = [];
             for(let x = 0; x < fieldCol; x++) {
@@ -67,8 +68,7 @@ const getRandomNum = (min,max)=> {
     }   
 
     const drawAll = () => {
-        // 時間計測スタート
-        startTime = Date.now();
+        
 
         // フィールドのクリア　ー＞　現在の描画を一旦消す
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -166,34 +166,34 @@ const getRandomNum = (min,max)=> {
    const dropBlock = () => {
     //    ゲームオーバーだったら、その時点で処理をしない
        if(gameOver) return;
+ 
+        turn ++;
+        console.log(`turn : ${turn}`);      
        
-    //    テトリミノの落下スピ−どの変化判定
-    let now = Date.now();
-    let passed = startTime.getTime - now.getTime;
-    if(passed > 60000) {
-        startTime = now;
-        dropSpeed --;
-        minute++;
-        if(minute > 10)dropSpeed --;
-        if(minute > 15)dropSpeed --;
-        if(minute > 20)dropSpeed -= 2;
-    }
-
        if(checkMove(0, 1)/* 現在地の一つ下に行けるか（落ちれるか）を調べる */) {
             tetroY++; // 一つ下にミノを落とす
        } else {
         //もう下に行けない　ー＞　一番下もしくはミノの上
-        toggleHold = true;
-           fixTetro(); //フィールドに現在のミノを同化させる
-           checkLine();//一行消せるかどうかを確認する
-        //    新しいミノを作る　********************************
-        createTetro();
 
-        //    console.log("now : " + Ttype + " new : " + newTtype);
-        //    新しいミノが現在地で動けるかどうか　ー＞　動けない　＝　ミノまたは壁に接触している　＝　ゲームオーバー
+        toggleHold = true;
+
+           fixTetro(); //フィールドに現在のミノを同化させる
+
+           checkLine();//一行消せるかどうかを確認する
+           
+           createTetro(); // 新しいミノを作る
+
+        // 新しいミノが現在地で動けるかどうか　ー＞　動けない　＝　ミノまたは壁に接触している　＝　ゲームオーバー
            if(! checkMove(0, 0)) {
                gameOver = true;
            }
+
+
+        if (turn > 60) {
+            turn = 0;
+            dropSpeed -= 5;
+        }
+        changeSpeed(dropSpeed);
        }
        //また描画リセット＆着地点等の処理を呼ぶ
        drawAll();
@@ -259,4 +259,14 @@ const getRandomNum = (min,max)=> {
             }
         }
       }
+    }
+
+    const startGame = (speed) => {
+        gameId = setInterval(dropBlock, speed);
+    }
+
+    const changeSpeed = (speed) => {
+        clearInterval(gameId);
+        startGame(speed);
+        console.log(dropSpeed);
     }
