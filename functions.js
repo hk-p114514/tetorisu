@@ -114,6 +114,8 @@ const getRandomNum = (min,max)=> {
             ctx.lineWidth = 4;
             ctx.strokeText(overMessage, x, y);
             ctx.fillText(overMessage, x, y);
+            baka.innerText = "クソ雑魚で草w";
+            baka.classList.add('impact');
         }
    }   
 
@@ -167,8 +169,6 @@ const getRandomNum = (min,max)=> {
     //    ゲームオーバーだったら、その時点で処理をしない
        if(gameOver) return;
  
-        turn ++;
-        console.log(`turn : ${turn}`);      
        
        if(checkMove(0, 1)/* 現在地の一つ下に行けるか（落ちれるか）を調べる */) {
             tetroY++; // 一つ下にミノを落とす
@@ -189,9 +189,11 @@ const getRandomNum = (min,max)=> {
            }
 
 
-        if (40 < turn) {
+        turn ++;
+        console.log(`turn : ${turn}`);      
+        if (1 < turn) {
             turn = 0;
-            dropSpeed -= 10;
+            dropSpeed -= 30;
         }
         changeSpeed(dropSpeed);
        }

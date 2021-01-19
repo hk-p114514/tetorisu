@@ -44,6 +44,7 @@
     // ホールド画面の表示
     const holdView = document.getElementById('hold');
     const htx = holdView.getContext('2d');
+    const baka = document.getElementById('baka');
 
     holdView.width = blockSize * 4;
     holdView.height = blockSize * 4;
@@ -61,7 +62,8 @@
         'skyblue',
         'gray', 
         'orange', 
-        'pink'
+        'pink',
+        'black'
     ];
 
 
@@ -128,16 +130,14 @@
             [1, 1, 0, 0],
             [0, 0, 0, 0],
         ],
+
+        [
+            [1, 0, 0, 1],
+            [0, 1, 1, 0],
+            [0, 1, 1, 0],
+            [1, 0, 0, 1],
+        ],
     ];
-    const tetroTypesObject = {
-        1 : 'I',
-        2 : 'L',
-        3 : 'J',
-        4 : 'T',
-        5 : 'O',
-        6 : 'Z',
-        7 : 'S',
-    }
     // テトロミノの初期地点　ー＞　画面中央の上から出現する
     const startX = fieldCol / 2 - tetroSize / 2;
     const startY = 0;

@@ -126,6 +126,37 @@ th {
     width: 100px;
 }
 
+.impact {
+    font-size: 1.5rem;
+    color: red;
+    animation: fadeIn 2s ease 0s 1 normal;
+    -webkit-animation: fadeIn 2s ease 0s 1 normal;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+        font-weight: normal;
+        font-size: 1.5rem;
+    }
+
+    100% {
+        opacity: 1;
+        font-size: bold;
+        font-size: 1.7rem;
+    }
+}
+
 @media (max-width: 800px) {
     table {
         display: none;
